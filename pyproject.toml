@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "na-slet-migrations"
+version = "0.0.0"
+description = ""
+authors = ["huscker <egostalker03@mail.ru>"]
+readme = "README.md"
+packages = [{include = "na_slet_migrations"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+sqlalchemy = {extras = ["asyncio"], version = "^1.4.44"}
+alembic = "^1.8.1"
+pydantic = "^1.10.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
