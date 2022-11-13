@@ -2,10 +2,10 @@ import uuid
 
 from enum import Enum
 
-from sqlalchemy import Boolean, Column, String, TIMESTAMP, Enum
-from sqlalchemy.dialects.postgresql import UUID, TSVECTOR
+from sqlalchemy import Boolean, Column, String, TIMESTAMP
+from sqlalchemy.dialects.postgresql import UUID, TSVECTOR, ENUM
 
-from database.alembic.base import DeclarativeBase
+from migrator.base import DeclarativeBase
 
 class Roles(Enum):
     REGULAR: str = "REGULAR"
@@ -18,13 +18,13 @@ class Gender(Enum):
 class Users(DeclarativeBase):
     __tablename__ = "users"
 
-    id = Column(UUID, primary_key=True, default=lambda: str(uuid.uuid4()))
-    role = Column(Enum(Roles), nullable=False, default=Roles.REGULAR)
+    id = Column(UUID, unique=True, primary_key=True, default=lambda: str(uuid.uuid4()))
+    role = Column(ENUM(Roles), nullable=False, default=Roles.REGULAR)
     name = Column(String, nullable=True)
     surname = Column(String, nullable=True)
-    gender = Column(Enum(Gender), nullable=True)
-    email = Column(String, nullable=True)
-    username = Column(String, nullable=False)
+    gender = Column(ENUM(Gender), nullable=True)
+    email = Column(String, nullable=True, primary_key=True)
+    username = Column(String, nullable=False, primary_key=True)
     hashed_password = Column(String, nullable=False)
     avatar_id = Column(String, nullable=True)
     vk_link = Column(String, nullable=True)

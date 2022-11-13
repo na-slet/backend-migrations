@@ -11,6 +11,7 @@ python = "^3.10"
 sqlalchemy = {extras = ["asyncio"], version = "^1.4.44"}
 alembic = "^1.8.1"
 pydantic = "^1.10.2"
+psycopg2 = "^2.9.5"
 
 
 [build-system]
