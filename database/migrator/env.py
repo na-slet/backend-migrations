@@ -6,16 +6,10 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from migrator.base import DeclarativeBase
-from settings import PostgresSettings
+from ..migrator.base import DeclarativeBase
+from ..settings import PostgresSettings
 
-from models.booked import Booked
-from models.events import Events
-from models.channels import Channels
-from models.favourites import Favourites
-from models.likes import Likes
-from models.subscribed import Subscribed
-from models.users import Users
+from ..models import *
 
 
 # this is the Alembic Config object, which provides

@@ -5,7 +5,7 @@ from enum import Enum
 from sqlalchemy import Boolean, Column, String, TIMESTAMP
 from sqlalchemy.dialects.postgresql import UUID, TSVECTOR, ENUM
 
-from migrator.base import DeclarativeBase
+from ..migrator.base import DeclarativeBase
 
 class Roles(Enum):
     REGULAR: str = "REGULAR"

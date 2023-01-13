@@ -145,3 +145,5 @@ dmypy.json
 /.idea/dataSources/991060be-6f56-47df-bbbd-e251e1f10d8d.xml
 /.idea/dataSources.local.xml
 /.idea/dataSources.xml
+/.idea/.gitignore
+/.idea/backend-migrations.iml

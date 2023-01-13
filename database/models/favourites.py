@@ -8,7 +8,7 @@ from sqlalchemy.dialects.postgresql import UUID, TSVECTOR
 
 from .users import Users
 from .events import Events
-from migrator.base import DeclarativeBase
+from ..migrator.base import DeclarativeBase
 
 
 
