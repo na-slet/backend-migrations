@@ -4,6 +4,7 @@ from enum import Enum
 
 from sqlalchemy import Boolean, Column, String, TIMESTAMP
 from sqlalchemy.dialects.postgresql import UUID, TSVECTOR, ENUM
+from pytz import UTC
 
 from ..migrator.base import DeclarativeBase
 

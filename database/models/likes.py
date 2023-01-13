@@ -4,6 +4,7 @@ from enum import Enum
 
 from sqlalchemy import Boolean, Column, String, TIMESTAMP, Enum, INTEGER, ForeignKey, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID, TSVECTOR
+from pytz import UTC
 
 from .users import Users
 from .events import Events
