@@ -29,6 +29,6 @@ class Events(DeclarativeBase):
     logo_id = Column(String, nullable=True)
     creator_id = Column(UUID, ForeignKey(Users.id, ondelete="CASCADE"), nullable=False)
     channel_id = Column(UUID, ForeignKey(Channels.id, ondelete="CASCADE"), nullable=True)
-    created_at = Column(TIMESTAMP(timezone=True), nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), nullable=False, default = lambda x: datetime.now(UTC))
     # TODO: add full-text search
 
