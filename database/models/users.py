@@ -1,20 +1,25 @@
 import uuid
 from datetime import datetime
+
 from enum import Enum
 
-from sqlalchemy import Boolean, Column, String, TIMESTAMP
-from sqlalchemy.dialects.postgresql import UUID, TSVECTOR, ENUM
+from sqlalchemy import Column, String, TIMESTAMP
+from sqlalchemy.dialects.postgresql import UUID, ENUM
 from pytz import UTC
 
-from ..migrator.base import DeclarativeBase
+from .base import DeclarativeBase
 
-class Roles(Enum):
+
+class Roles(str, Enum):
     REGULAR: str = "REGULAR"
     CREATOR: str = "CREATOR"
+    ADMIN: str = "ADMIN"
 
-class Gender(Enum):
+
+class Genders(str, Enum):
     MALE: str = "male"
     FEMALE: str = "female"
+
 
 class Users(DeclarativeBase):
     __tablename__ = "users"
@@ -23,7 +28,7 @@ class Users(DeclarativeBase):
     role = Column(ENUM(Roles), nullable=False, default=Roles.REGULAR)
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
-    gender = Column(ENUM(Gender), nullable=True)
+    gender = Column(ENUM(Genders), nullable=True)
     phone = Column(String, primary_key=True)
     email = Column(String, primary_key=True)
     hashed_password = Column(String, nullable=False)

@@ -6,11 +6,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from ..migrator.base import DeclarativeBase
-from ..settings import PostgresSettings
-
-from ..models import *
-
+from models.base import DeclarativeBase
+from settings import PostgresSettings
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

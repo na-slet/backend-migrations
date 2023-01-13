@@ -28,4 +28,4 @@ down:
 	docker compose down
 
 open_postgres:
-	PGPASSWORD=${DB_PASSWORD} docker exec -it parking-map-backend-postgresql psql -U ${DB_USERNAME} -d ${DB_NAME}
+	PGPASSWORD=${DB_PASSWORD} psql -U ${DB_USERNAME} -d ${DB_NAME}
