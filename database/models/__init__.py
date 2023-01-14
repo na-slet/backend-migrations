@@ -1,4 +1,4 @@
-from .booked import Booked
+from .participations import Participations
 from .channels import Channels
 from .events import Events
 from .favourites import Favourites
