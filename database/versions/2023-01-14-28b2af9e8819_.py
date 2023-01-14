@@ -22,7 +22,7 @@ def upgrade() -> None:
     sa.Column('id', postgresql.UUID(), nullable=False),
     sa.Column('user_id', postgresql.UUID(), nullable=False),
     sa.Column('event_id', postgresql.UUID(), nullable=False),
-    sa.Column('participation_stage', postgresql.ENUM('PENDING', 'APPROVED', 'DECLINED', name='participationstages'), nullable=False),
+    sa.Column('participation_stage', postgresql.ENUM('INVITATION_PENDING', 'PAYMENT_NEEDED', 'PAYMENT_PENDING', 'APPROVED', 'DECLINED', name='participationstages'), nullable=False),
     sa.Column('created_at', sa.TIMESTAMP(timezone=True), nullable=False),
     sa.ForeignKeyConstraint(['event_id'], ['events.id'], name=op.f('fk__participations__event_id__events'), ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk__participations__user_id__users'), ondelete='CASCADE'),

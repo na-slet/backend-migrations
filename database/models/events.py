@@ -6,7 +6,6 @@ from sqlalchemy.dialects.postgresql import UUID
 from pytz import UTC
 
 from .users import Users
-from .channels import Channels
 from .base import DeclarativeBase
 
 
@@ -20,13 +19,10 @@ class Events(DeclarativeBase):
     start_date = Column(TIMESTAMP(timezone=True), nullable=False)
     end_date = Column(TIMESTAMP(timezone=True), nullable=False)
     total_places = Column(INTEGER, nullable=False)
-    available_places = Column(INTEGER, nullable=False)
-    rating = Column(INTEGER, default=0)
-    link = Column(String, nullable=True) # social network link
+    url_link = Column(String, nullable=True) # social network link
     address = Column(String, nullable=False)
     logo_id = Column(String, nullable=True)
     creator_id = Column(UUID, ForeignKey(Users.id, ondelete="CASCADE"), nullable=False)
-    channel_id = Column(UUID, ForeignKey(Channels.id, ondelete="CASCADE"), nullable=True)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, default = lambda x: datetime.now(UTC))
     # TODO: add full-text search
 
