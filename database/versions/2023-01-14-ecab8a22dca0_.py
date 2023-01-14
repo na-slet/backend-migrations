@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 2e1914b486bd
+Revision ID: ecab8a22dca0
 Revises: 
-Create Date: 2023-01-13 19:13:20.308757
+Create Date: 2023-01-14 16:19:47.473057
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '2e1914b486bd'
+revision = 'ecab8a22dca0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,14 +21,12 @@ def upgrade() -> None:
     op.create_table('users',
     sa.Column('id', postgresql.UUID(), nullable=False),
     sa.Column('role', postgresql.ENUM('REGULAR', 'CREATOR', 'ADMIN', name='roles'), nullable=False),
-    sa.Column('first_name', sa.String(), nullable=False),
-    sa.Column('last_name', sa.String(), nullable=False),
+    sa.Column('first_name', sa.String(), nullable=True),
+    sa.Column('last_name', sa.String(), nullable=True),
     sa.Column('gender', postgresql.ENUM('MALE', 'FEMALE', name='genders'), nullable=True),
     sa.Column('phone', sa.String(), nullable=False),
     sa.Column('email', sa.String(), nullable=False),
-    sa.Column('hashed_password', sa.String(), nullable=False),
     sa.Column('avatar_id', sa.String(), nullable=True),
-    sa.Column('vk_link', sa.String(), nullable=True),
     sa.Column('tg_link', sa.String(), nullable=True),
     sa.Column('birth_date', sa.TIMESTAMP(timezone=True), nullable=True),
     sa.Column('created_at', sa.TIMESTAMP(timezone=True), nullable=False),
@@ -45,6 +43,16 @@ def upgrade() -> None:
     sa.ForeignKeyConstraint(['creator_id'], ['users.id'], name=op.f('fk__channels__creator_id__users'), ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id', name=op.f('pk__channels')),
     sa.UniqueConstraint('id', name=op.f('uq__channels__id'))
+    )
+    op.create_table('credentials',
+    sa.Column('id', postgresql.UUID(), nullable=False),
+    sa.Column('user_id', postgresql.UUID(), nullable=False),
+    sa.Column('credential_type', postgresql.ENUM('BASIC', 'VK', 'GOOGLE', name='credentialtypes'), nullable=False),
+    sa.Column('value', sa.String(), nullable=False),
+    sa.Column('created_at', sa.TIMESTAMP(timezone=True), nullable=False),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk__credentials__user_id__users'), ondelete='CASCADE'),
+    sa.PrimaryKeyConstraint('id', name=op.f('pk__credentials')),
+    sa.UniqueConstraint('id', name=op.f('uq__credentials__id'))
     )
     op.create_table('events',
     sa.Column('id', postgresql.UUID(), nullable=False),
@@ -121,8 +129,10 @@ def downgrade() -> None:
     op.drop_table('favourites')
     op.drop_table('booked')
     op.drop_table('events')
+    op.drop_table('credentials')
     op.drop_table('channels')
     op.drop_table('users')
-    op.execute("drop type genders")
-    op.execute("drop type roles")
+    op.execute('drop type credentialtypes')
+    op.execute('drop type genders')
+    op.execute('drop type roles')
     # ### end Alembic commands ###
