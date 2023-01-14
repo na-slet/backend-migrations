@@ -28,8 +28,9 @@ class Users(DeclarativeBase):
     first_name = Column(String, nullable=True)
     last_name = Column(String, nullable=True)
     gender = Column(ENUM(Genders), nullable=True)
-    phone = Column(String, primary_key=True)
-    email = Column(String, primary_key=True)
+    phone = Column(String, nullable=True)
+    email = Column(String, nullable=True)
+    city = Column(String, nullable=True) # TODO: make it enum
     avatar_id = Column(String, nullable=True)
     tg_link = Column(String, nullable=True)
     birth_date = Column(TIMESTAMP(timezone=True), nullable=True)

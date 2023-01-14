@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: ecab8a22dca0
+Revision ID: c494274d446e
 Revises: 
-Create Date: 2023-01-14 16:19:47.473057
+Create Date: 2023-01-14 17:21:59.604860
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'ecab8a22dca0'
+revision = 'c494274d446e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,13 +24,14 @@ def upgrade() -> None:
     sa.Column('first_name', sa.String(), nullable=True),
     sa.Column('last_name', sa.String(), nullable=True),
     sa.Column('gender', postgresql.ENUM('MALE', 'FEMALE', name='genders'), nullable=True),
-    sa.Column('phone', sa.String(), nullable=False),
-    sa.Column('email', sa.String(), nullable=False),
+    sa.Column('phone', sa.String(), nullable=True),
+    sa.Column('email', sa.String(), nullable=True),
+    sa.Column('city', sa.String(), nullable=True),
     sa.Column('avatar_id', sa.String(), nullable=True),
     sa.Column('tg_link', sa.String(), nullable=True),
     sa.Column('birth_date', sa.TIMESTAMP(timezone=True), nullable=True),
     sa.Column('created_at', sa.TIMESTAMP(timezone=True), nullable=False),
-    sa.PrimaryKeyConstraint('id', 'phone', 'email', name=op.f('pk__users')),
+    sa.PrimaryKeyConstraint('id', name=op.f('pk__users')),
     sa.UniqueConstraint('id', name=op.f('uq__users__id'))
     )
     op.create_table('channels',
