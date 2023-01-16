@@ -6,10 +6,32 @@ on:
       - main
 
 jobs:
-  Killall:
+  Clear:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: touch private_key && echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
       - run: ssh -i private_key -o StrictHostKeyChecking=accept-new deployer@${{ secrets.SSH_HOST }}
-      - run: ssh -i private_key deployer@${{ secrets.SSH_HOST }} 'cd ~/na-slet/backend-migrations; touch done'
+      - run: ssh -i private_key deployer@${{ secrets.SSH_HOST }} 'cd ~/na-slet/backend-migrations; make down'
+  Prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: touch private_key && echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
+      - run: ssh -i private_key -o StrictHostKeyChecking=accept-new deployer@${{ secrets.SSH_HOST }}
+      - run: ssh -i private_key deployer@${{ secrets.SSH_HOST }} 'cd ~/na-slet/backend-migrations; echo -e "${{ secrets.ENV_CONTENTS }}" > .env'
+      - run: ssh -i private_key deployer@${{ secrets.SSH_HOST }} 'cd ~/na-slet/backend-migrations; make build --no-cache'
+  Services:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: touch private_key && echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
+      - run: ssh -i private_key -o StrictHostKeyChecking=accept-new deployer@${{ secrets.SSH_HOST }}
+      - run: ssh -i private_key deployer@${{ secrets.SSH_HOST }} 'cd ~/na-slet/backend-migrations; make postgresql'
+  Migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: touch private_key && echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
+      - run: ssh -i private_key -o StrictHostKeyChecking=accept-new deployer@${{ secrets.SSH_HOST }}
+      - run: ssh -i private_key deployer@${{ secrets.SSH_HOST }} 'cd ~/na-slet/backend-migrations; make migrator'
