@@ -11,3 +11,10 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_DB=${DB_NAME}
+  migrator:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - postgresql
+    restart: always

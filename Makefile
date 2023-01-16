@@ -18,14 +18,20 @@ downgrade:
 shell:
 	poetry shell
 
+prepare:
+	poetry install | true
+
 logs:
-	docker compose logs
+	docker-compose logs
 
 postgres:
-	docker compose up -d postgresql
+	docker-compose up -d postgresql
+
+migrator:
+	docker-compose up -d migrator
 
 down:
-	docker compose down
+	docker-compose down
 
 open_postgres:
-	PGPASSWORD=${DB_PASSWORD} psql -U ${DB_USERNAME} -d ${DB_NAME}
+	PGPASSWORD=${DB_PASSWORD} psql -h ${DB_HOST} -U ${DB_USERNAME} -d ${DB_NAME}
