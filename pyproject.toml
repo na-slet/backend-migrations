@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "na_slet_migrations"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.8"
 sqlalchemy = {extras = ["asyncio"], version = "^1.4.44"}
 alembic = "^1.8.1"
 pydantic = "^1.10.2"
