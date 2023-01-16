@@ -21,7 +21,7 @@ jobs:
       - run: touch private_key && echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
       - run: ssh -i private_key -o StrictHostKeyChecking=accept-new deployer@${{ secrets.SSH_HOST }}
       - run: ssh -i private_key deployer@${{ secrets.SSH_HOST }} 'cd ~/na-slet/backend-migrations; echo -e "${{ secrets.ENV_CONTENTS }}" > .env'
-      - run: ssh -i private_key deployer@${{ secrets.SSH_HOST }} 'cd ~/na-slet/backend-migrations; make build --no-cache'
+      - run: ssh -i private_key deployer@${{ secrets.SSH_HOST }} 'cd ~/na-slet/backend-migrations; make build'
   Services:
     runs-on: ubuntu-latest
     needs: [Prepare]
