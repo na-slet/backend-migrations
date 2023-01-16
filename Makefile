@@ -19,7 +19,7 @@ shell:
 	poetry shell
 
 prepare:
-	poetry install | true
+	poetry install || true
 
 logs:
 	docker-compose logs
