@@ -4,22 +4,22 @@ export
 ALEMBIC = database
 
 migrate:
-	cd ${ALEMBIC} && python -m poetry run alembic upgrade head
+	cd ${ALEMBIC} && poetry run alembic upgrade head
 
 revision:
-	cd ${ALEMBIC} && python -m poetry run alembic revision --autogenerate
+	cd ${ALEMBIC} && poetry run alembic revision --autogenerate
 
 upgrade:
-	cd ${ALEMBIC} && python -m poetry run alembic upgrade +1
+	cd ${ALEMBIC} && poetry run alembic upgrade +1
 
 downgrade:
-	cd ${ALEMBIC} && python -m poetry run alembic downgrade -1
+	cd ${ALEMBIC} && poetry run alembic downgrade -1
 
 shell:
-	python -m poetry shell
+	poetry shell
 
 prepare:
-	python -m poetry install | true
+	poetry install | true
 
 logs:
 	docker-compose logs
