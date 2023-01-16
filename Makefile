@@ -24,7 +24,7 @@ prepare:
 logs:
 	docker-compose logs
 
-postgres:
+postgresql:
 	docker-compose up -d postgresql
 
 migrator:
@@ -33,5 +33,8 @@ migrator:
 down:
 	docker-compose down
 
-open_postgres:
+build:
+	docker-compose build --no-cache
+
+open_postgresql:
 	PGPASSWORD=${DB_PASSWORD} psql -h ${DB_HOST} -U ${DB_USERNAME} -d ${DB_NAME}
