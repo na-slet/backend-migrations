@@ -28,7 +28,7 @@ postgresql:
 	docker-compose up -d postgresql
 
 migrator:
-	docker-compose up -d migrator
+	docker-compose up migrator
 
 down:
 	docker-compose down
