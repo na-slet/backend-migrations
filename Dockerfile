@@ -3,7 +3,7 @@ WORKDIR /code
 RUN apk add --no-cache make
 RUN apk add --no-cache poetry
 COPY poetry.lock pyproject.toml ./
-RUN poetry install | true
+RUN make prepare
 COPY ./database ./database
 COPY ./.env ./.env
 COPY ./Makefile ./Makefile
