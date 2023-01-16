@@ -3,7 +3,6 @@ WORKDIR /code
 RUN apk add --no-cache make
 RUN apk add --no-cache poetry
 COPY poetry.lock pyproject.toml ./
-RUN poetry
 RUN poetry install | true
 COPY ./database ./database
 COPY ./.env ./.env

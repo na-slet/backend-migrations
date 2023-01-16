@@ -17,4 +17,3 @@ services:
       dockerfile: ./Dockerfile
     depends_on:
       - postgresql
-    restart: always
