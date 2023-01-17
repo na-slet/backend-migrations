@@ -28,3 +28,4 @@ services:
       - na-slet
 networks:
   na-slet:
+    name: na-slet-network
