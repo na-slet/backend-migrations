@@ -13,6 +13,8 @@ services:
       - POSTGRES_DB=${DB_NAME}
     volumes:
       - ../pgdata:/var/lib/postgresql
+    networks:
+      - na-slet
   migrator:
     container_name: na-slet-migrator
     ports:
@@ -22,3 +24,7 @@ services:
       dockerfile: ./Dockerfile
     depends_on:
       - postgresql
+    networks:
+      - na-slet
+networks:
+  na-slet:
