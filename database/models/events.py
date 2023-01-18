@@ -26,7 +26,7 @@ class Events(DeclarativeBase):
     city = Column(String, nullable=True) # TODO: make it enum
     start_date = Column(TIMESTAMP(timezone=True), nullable=False)
     end_date = Column(TIMESTAMP(timezone=True), nullable=False)
-    total_places = Column(INTEGER, nullable=False)
+    total_places = Column(INTEGER, nullable=True)
     url_link = Column(String, nullable=True) # social network link
     event_type = Column(ENUM(EventType), nullable=True)
     union_full = Column(String, nullable=True)
