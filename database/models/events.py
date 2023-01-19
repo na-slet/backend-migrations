@@ -36,7 +36,8 @@ class Events(DeclarativeBase):
     end_date = Column(TIMESTAMP(timezone=True), nullable=False)
     total_places = Column(INTEGER, nullable=True)
     url_link = Column(String, nullable=True) # social network link
-    event_type = Column(ENUM(EventType), nullable=True)
+    category_type = Column(ENUM(CategoryType), nullable=False)
+    event_type = Column(ENUM(EventType), nullable=False)
     union_id = Column(UUID, ForeignKey(Unions.id, ondelete="SET NULL"), nullable=True)
     min_age = Column(INTEGER, nullable=True)
     max_age = Column(INTEGER, nullable=True)
