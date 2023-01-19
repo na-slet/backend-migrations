@@ -3,12 +3,12 @@ from datetime import datetime
 
 from enum import Enum
 
-from sqlalchemy import Column, String, TIMESTAMP, UniqueConstraint
+from sqlalchemy import Column, String, TIMESTAMP, UniqueConstraint, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID, ENUM
 from pytz import UTC
 
 from .base import DeclarativeBase
-
+from .unions import Unions
 
 class Roles(str, Enum):
     REGULAR: str = "REGULAR"
@@ -35,4 +35,5 @@ class Users(DeclarativeBase):
     avatar_id = Column(String, nullable=True)
     tg_link = Column(String, nullable=True)
     birth_date = Column(TIMESTAMP(timezone=True), nullable=True)
+    union_id = Column(UUID, ForeignKey(Unions.id, ondelete="SET NULL"), nullable=True)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, default = lambda x: datetime.now(UTC))
