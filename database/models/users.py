@@ -3,11 +3,12 @@ from datetime import datetime
 
 from enum import Enum
 
-from sqlalchemy import Column, String, TIMESTAMP
+from sqlalchemy import Column, String, TIMESTAMP, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID, ENUM
 from pytz import UTC
 
 from .base import DeclarativeBase
+
 
 class Roles(str, Enum):
     REGULAR: str = "REGULAR"
@@ -29,7 +30,7 @@ class Users(DeclarativeBase):
     last_name = Column(String, nullable=True)
     gender = Column(ENUM(Genders), nullable=True)
     phone = Column(String, nullable=True)
-    email = Column(String, nullable=True)
+    email = Column(String, nullable=True, unique=True)
     city = Column(String, nullable=True) # TODO: make it enum
     avatar_id = Column(String, nullable=True)
     tg_link = Column(String, nullable=True)

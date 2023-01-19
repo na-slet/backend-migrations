@@ -3,7 +3,7 @@ from datetime import datetime
 
 from enum import Enum
 
-from sqlalchemy import Column, String, TIMESTAMP, ForeignKey
+from sqlalchemy import Column, String, TIMESTAMP, ForeignKey, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID, ENUM
 from pytz import UTC
 
@@ -25,3 +25,7 @@ class Credentials(DeclarativeBase):
     credential_type = Column(ENUM(CredentialTypes), nullable=False, default=CredentialTypes.BASIC)
     value = Column(String, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, default = lambda x: datetime.now(UTC))
+
+    __table_args__ = (
+        UniqueConstraint(user_id, credential_type),
+    )
