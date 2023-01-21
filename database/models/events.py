@@ -23,6 +23,14 @@ class CategoryType(str, Enum):
     CAMP = 'CAMP'
 
 
+class ColorVariant(str, Enum):
+    RED = "RED"
+    ORANGE = "ORANGE"
+    YELLOW = "YELLOW"
+    GREEN = "GREEN"
+    GRAY = "GRAY"
+
+
 class Events(DeclarativeBase):
     __tablename__ = "events"
 
@@ -30,6 +38,7 @@ class Events(DeclarativeBase):
     name = Column(String, nullable=False)
     description = Column(String, nullable=True)
     short_description = Column(String, nullable=True)
+    color_variant = Column(ENUM(ColorVariant), default=ColorVariant.ORANGE, nullable=False)
     city = Column(String, nullable=True) # TODO: make it enum
     reg_end_date = Column(TIMESTAMP(timezone=True), nullable=False)
     start_date = Column(TIMESTAMP(timezone=True), nullable=False)
@@ -44,7 +53,6 @@ class Events(DeclarativeBase):
     address = Column(String, nullable=False)
     latitude = Column(FLOAT, nullable=True) # TODO: make it point
     longitude = Column(FLOAT, nullable=True)
-    logo_id = Column(String, nullable=True)
     creator_id = Column(UUID, ForeignKey(Users.id, ondelete="CASCADE"), nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, default = lambda x: datetime.now(UTC))
     # TODO: add full-text search
