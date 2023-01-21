@@ -37,7 +37,7 @@ class Users(DeclarativeBase):
     parent_email = Column(String, nullable=True)
     email = Column(String, nullable=True, unique=True)
     city = Column(String, nullable=True) # TODO: make it enum
-    avatar_id = Column(String, default='static/default.png', nullable=True)
+    avatar_id = Column(String, default='static/default.png', nullable=False)
     tg_link = Column(String, nullable=True)
     birth_date = Column(TIMESTAMP(timezone=True), nullable=True)
     union_id = Column(UUID, ForeignKey(Unions.id, ondelete="SET NULL"), nullable=True)
