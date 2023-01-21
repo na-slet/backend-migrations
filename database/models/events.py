@@ -31,6 +31,16 @@ class ColorVariant(str, Enum):
     GRAY = "GRAY"
 
 
+class LogoVariant(str, Enum):
+    SCOUT = "SCOUT"
+    CAMP = "CAMP"
+    FOREST = "FOREST"
+    TRIPLE_DANCING = "TRIPLE_DANCING"
+    PAIR_STANDING = "PAIR_STANDING"
+    TRIPLE_STANDING = "TRIPLE_STANDING"
+    TRIPLE_SITTING = "TRIPLE_SITTING"
+
+
 class Events(DeclarativeBase):
     __tablename__ = "events"
 
@@ -38,7 +48,7 @@ class Events(DeclarativeBase):
     name = Column(String, nullable=False)
     description = Column(String, nullable=True)
     short_description = Column(String, nullable=True)
-    color_variant = Column(ENUM(ColorVariant), default=ColorVariant.ORANGE, nullable=False)
+    logo_variant = Column(ENUM(LogoVariant), nullable=False)
     city = Column(String, nullable=True) # TODO: make it enum
     reg_end_date = Column(TIMESTAMP(timezone=True), nullable=False)
     start_date = Column(TIMESTAMP(timezone=True), nullable=False)
