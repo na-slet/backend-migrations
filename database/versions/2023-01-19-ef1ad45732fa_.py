@@ -21,54 +21,63 @@ def upgrade() -> None:
     bind = op.get_bind()
     session = sa.orm.Session(bind=bind)
     query = sa.insert(Unions).values(
+        id='3fa85f64-5717-4562-b3fc-2c963f66afa6',
         name='Северо западное объединение',
         short_name='СЗО'
     )
     session.execute(query)
     session.commit()
     query = sa.insert(Unions).values(
+        id='4fa85f64-5717-4562-b3fc-2c963f66afa6',
         name='Центральное объединение',
         short_name='ЦО'
     )
     session.execute(query)
     session.commit()
     query = sa.insert(Unions).values(
+        id='5fa85f64-5717-4562-b3fc-2c963f66afa6',
         name='Московское объединение',
         short_name='МО'
     )
     session.execute(query)
     session.commit()
     query = sa.insert(Unions).values(
+        id='6fa85f64-5717-4562-b3fc-2c963f66afa6',
         name='Волго-вятское объединение',
         short_name='ВВО'
     )
     session.execute(query)
     session.commit()
     query = sa.insert(Unions).values(
+        id='7fa85f64-5717-4562-b3fc-2c963f66afa6',
         name='Волжское объединение',
         short_name='ВО'
     )
     session.execute(query)
     session.commit()
     query = sa.insert(Unions).values(
+        id='8fa85f64-5717-4562-b3fc-2c963f66afa6',
         name='Уральское объединение',
         short_name='УО'
     )
     session.execute(query)
     session.commit()
     query = sa.insert(Unions).values(
+        id='9fa85f64-5717-4562-b3fc-2c963f66afa6',
         name='Южное объединение',
         short_name='ЮО'
     )
     session.execute(query)
     session.commit()
     query = sa.insert(Unions).values(
+        id='33a85f64-5717-4562-b3fc-2c963f66afa6',
         name='Кубанско-черноморское объединение',
         short_name='КЧО'
     )
     session.execute(query)
     session.commit()
     query = sa.insert(Unions).values(
+        id='34a85f64-5717-4562-b3fc-2c963f66afa6',
         name='Ростово-калмыцкое объединение',
         short_name='РКО'
     )
