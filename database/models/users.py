@@ -27,6 +27,7 @@ class Users(DeclarativeBase):
     id = Column(UUID, unique=True, primary_key=True, default=lambda: str(uuid.uuid4()))
     role = Column(ENUM(Roles), nullable=False, default=Roles.REGULAR)
     first_name = Column(String, nullable=True)
+    middle_name = Column(String, nullable=True)
     last_name = Column(String, nullable=True)
     gender = Column(ENUM(Genders), nullable=True)
     phone = Column(String, nullable=True)
