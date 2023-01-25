@@ -33,8 +33,11 @@ migrator:
 down:
 	docker-compose down
 
-build:
+rebuild:
 	docker-compose build --no-cache
+
+build:
+	docker-compose build
 
 open_postgresql:
 	PGPASSWORD=${DB_PASSWORD} psql -h ${DB_HOST} -U ${DB_USERNAME} -d ${DB_NAME}
