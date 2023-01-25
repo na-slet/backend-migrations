@@ -2,7 +2,7 @@ import uuid
 from enum import Enum
 from datetime import datetime
 
-from sqlalchemy import Column, String, TIMESTAMP, INTEGER, ForeignKey, FLOAT
+from sqlalchemy import Column, String, TIMESTAMP, INTEGER, ForeignKey, FLOAT, NUMERIC
 from sqlalchemy.dialects.postgresql import UUID, ENUM
 from pytz import UTC
 
@@ -48,6 +48,7 @@ class Events(DeclarativeBase):
     name = Column(String, nullable=False)
     description = Column(String, nullable=True)
     short_description = Column(String, nullable=True)
+    price = Column(NUMERIC, nullable=True)
     logo_variant = Column(ENUM(LogoVariant), nullable=False)
     city = Column(String, nullable=True) # TODO: make it enum
     reg_end_date = Column(TIMESTAMP(timezone=True), nullable=False)
