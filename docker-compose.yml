@@ -12,7 +12,7 @@ services:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_DB=${DB_NAME}
     volumes:
-      - ../pgdata:/var/lib/postgresql
+      - ../pgdata:/var/lib/postgresql/data
     networks:
       - na-slet
   migrator:
