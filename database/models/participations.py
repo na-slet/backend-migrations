@@ -11,6 +11,7 @@ from .base import DeclarativeBase
 
 
 class ParticipationStages(str, Enum):
+    NOT_PARTICIPATED: str = "NOT_PARTICIPATED"
     PAYMENT_NEEDED: str = "PAYMENT_NEEDED"
     PAYMENT_PENDING: str = "PAYMENT_PENDING"
     APPROVED: str = "APPROVED"

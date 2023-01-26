@@ -31,7 +31,7 @@ migrator:
 	docker-compose up migrator
 
 down:
-	docker-compose down
+	docker-compose down || true
 
 rebuild:
 	docker-compose build --no-cache
