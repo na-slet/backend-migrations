@@ -1,9 +1,6 @@
 name: MyDeploy
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
   Clear:

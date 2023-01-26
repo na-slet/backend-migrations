@@ -32,9 +32,7 @@ class Users(DeclarativeBase):
     gender = Column(ENUM(Genders), nullable=True)
     phone = Column(String, nullable=True)
     parent_phone = Column(String, nullable=True)
-    parent_first_name = Column(String, nullable=True)
-    parent_middle_name = Column(String, nullable=True)
-    parent_last_name = Column(String, nullable=True)
+    parent_fio = Column(String, nullable=True)
     parent_email = Column(String, nullable=True)
     email = Column(String, nullable=True, unique=True)
     city = Column(String, nullable=True) # TODO: make it enum
