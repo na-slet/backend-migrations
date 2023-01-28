@@ -41,6 +41,11 @@ class LogoVariant(str, Enum):
     TRIPLE_SITTING = "TRIPLE_SITTING"
 
 
+class Visibility(str, Enum):
+    PUBLIC = "PUBLIC"
+    PRIVATE = "PRIVATE"
+
+
 class Events(DeclarativeBase):
     __tablename__ = "events"
 
@@ -50,6 +55,7 @@ class Events(DeclarativeBase):
     short_description = Column(String, nullable=True)
     price = Column(NUMERIC, nullable=True)
     logo_variant = Column(ENUM(LogoVariant), nullable=False)
+    visibility = Column(ENUM(Visibility), nullable=False, default=Visibility.PUBLIC)
     city = Column(String, nullable=True) # TODO: make it enum
     reg_end_date = Column(TIMESTAMP(timezone=True), nullable=False)
     start_date = Column(TIMESTAMP(timezone=True), nullable=False)
