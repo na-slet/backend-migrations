@@ -16,6 +16,6 @@ class Channels(DeclarativeBase):
     name = Column(String, nullable=False)
     description = Column(String, nullable=True)
     subscribed = Column(INTEGER, default=0)
-    creator_id = Column(UUID, ForeignKey(Users.id, ondelete="CASCADE"), nullable=False)
+    creator_id = Column(UUID, ForeignKey(Users.id, ondelete="CASCADE"), nullable=False, index=True)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, default = lambda x: datetime.now(UTC))
 

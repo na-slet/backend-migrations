@@ -57,20 +57,20 @@ class Events(DeclarativeBase):
     logo_variant = Column(ENUM(LogoVariant), nullable=False)
     visibility = Column(ENUM(Visibility), nullable=False, default=Visibility.PUBLIC)
     city = Column(String, nullable=True) # TODO: make it enum
-    reg_end_date = Column(TIMESTAMP(timezone=True), nullable=False)
-    start_date = Column(TIMESTAMP(timezone=True), nullable=False)
-    end_date = Column(TIMESTAMP(timezone=True), nullable=False)
+    reg_end_date = Column(TIMESTAMP(timezone=True), nullable=False, index=True)
+    start_date = Column(TIMESTAMP(timezone=True), nullable=False, index=True)
+    end_date = Column(TIMESTAMP(timezone=True), nullable=False, index=True)
     total_places = Column(INTEGER, nullable=True)
     url_link = Column(String, nullable=True) # social network link
-    category_type = Column(ENUM(CategoryType), nullable=False)
-    event_type = Column(ENUM(EventType), nullable=False)
+    category_type = Column(ENUM(CategoryType), nullable=False, index=True)
+    event_type = Column(ENUM(EventType), nullable=False, index=True)
     union_id = Column(UUID, ForeignKey(Unions.id, ondelete="SET NULL"), nullable=True)
     min_age = Column(INTEGER, nullable=True)
     max_age = Column(INTEGER, nullable=True)
     address = Column(String, nullable=False)
     latitude = Column(FLOAT, nullable=True) # TODO: make it point
     longitude = Column(FLOAT, nullable=True)
-    creator_id = Column(UUID, ForeignKey(Users.id, ondelete="CASCADE"), nullable=False)
+    creator_id = Column(UUID, ForeignKey(Users.id, ondelete="CASCADE"), nullable=False, index=True)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, default = lambda x: datetime.now(UTC))
     # TODO: add full-text search
 

@@ -34,7 +34,7 @@ class Users(DeclarativeBase):
     parent_phone = Column(String, nullable=True)
     parent_fio = Column(String, nullable=True)
     parent_email = Column(String, nullable=True)
-    email = Column(String, nullable=True, unique=True)
+    email = Column(String, nullable=True, unique=True, index=True)
     city = Column(String, nullable=True) # TODO: make it enum
     avatar_id = Column(String, default='static/default.png', nullable=False)
     tg_link = Column(String, nullable=True)
